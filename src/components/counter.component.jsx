@@ -2,47 +2,50 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    items: [0, 2],
+    counter: 0,
   };
 
   formatCount = () => {
-    if (this.state.items[0] === 0) return "Zero";
-    return this.state.items[0];
+    if (this.state.counter === 0) return "Zero";
+    return this.state.counter;
   };
 
   handleIncrement = () => {
-    const { items } = this.state;
-    //   array destrucuring
-    const arra = [...items];
-    // spread operator
-    arra[0]++;
-
-    this.setState({ items: arra });
+    this.setState({ counter: this.state.counter + 1 });
   };
 
   handleDecrement = () => {
-    const { items } = this.state;
-    //   array destrucuring
-    const arra = [...items];
-    // spread operator
-    arra[0]--;
+    if (this.state.counter > 0) {
+      this.setState({ counter: this.state.counter - 1 });
+    }
+  };
 
-    this.setState({ items: arra });
+  handleDelete = () => {
+    if (this.state.counter > 0) {
+      this.setState({ counter: this.state.counter === 0 });
+    }
+  };
+
+  handleReset = () => {
+    if (this.state.counter > 0) {
+      this.setState({ counter: this.state.counter === 0 });
+      if (this.state.counter === 0) return "Zero";
+      return this.state.counter;
+    }
+    if (this.state.counter === 0) return "Zero";
+    return this.state.counter;
   };
 
   render() {
     return (
       <>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-              Navbar <span class="badge bg-secondary">4</span>
-            </a>
-          </div>
-        </nav>
-        <button type="button" class="btn btn-primary m-4">
+        {/* <button
+          onClick={this.handleReset}
+          type="button"
+          class="btn btn-primary m-4"
+        >
           Reset
-        </button>
+        </button> */}
 
         <ul>
           <li class="list-unstyled">
@@ -62,7 +65,11 @@ class Counter extends Component {
               >
                 -
               </button>
-              <button type="button" class="btn btn-danger m-2">
+              <button
+                onClick={this.handleDelete}
+                type="button"
+                class="btn btn-danger m-2"
+              >
                 Delete
               </button>
             </div>
