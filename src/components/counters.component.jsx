@@ -11,10 +11,55 @@ class Counters extends Component {
       { id: 4, value: 0 },
     ],
   };
-  render() {
-    return this.state.counters.map((counter) => {
-      return <Counter key={counter.id} />;
+  // constructor() {
+  //   super();
+  //   this.handleReset = this.handleReset.bind(this);
+  // }
+  handleIncrement = (id) => {
+    const counters = this.state.counters.map((counter, idx) => {
+      if (counter.id === id) return { id: idx, value: counter.value + 1 };
+      return counter;
     });
+    this.setState({ counters: counters });
+  };
+
+  handleDecrement = (id) => {
+    const counters = this.state.counters.map((counter, idx) => {
+      if (counter.id === id) return { id: idx, value: counter.value - 1 };
+      return counter;
+    });
+    this.setState({ counters: counters });
+  };
+  handleReset = () => {
+    const all_counters = this.state.counters.map((counter, idx) => ({
+      id: idx,
+      value: 0,
+    }));
+    this.setState({ counters: all_counters });
+  };
+  render() {
+    return (
+      <>
+        <button
+          onClick={this.handleReset}
+          type="button"
+          class="btn btn-primary m-4"
+        >
+          Reset
+        </button>
+        {this.state.counters.map((counter) => {
+          return (
+            <Counter
+              key={counter.id}
+              value={counter.value}
+              id={counter.id}
+              onIncrement={this.handleIncrement}
+              onDecrement={this.handleIncrement}
+            />
+          );
+        })}
+      </>
+    );
   }
 }
 

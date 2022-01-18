@@ -1,103 +1,95 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  state = {
-    counter: 0,
-  };
-
   formatCount = () => {
     if (this.state.counter === 0) return "Zero";
     return this.state.counter;
   };
 
-  handleIncrement = () => {
-    this.setState({ counter: this.state.counter + 1 });
-  };
+  // handleIncrement = (id) => {
+  //   const counters = this.state.counters.map((counter, idx) => {
+  //     if (counter.id === id) {
+  //       return { id: idx, value: counter.value + 1 };
+  //     }
+  //   });
+  //   this.setState({ counters: counters });
+  // };
 
-  handleDecrement = () => {
-    if (this.state.counter > 0) {
-      this.setState({ counter: this.state.counter - 1 });
-    }
-  };
+  // handleDecrement = (id) => {
+  //   const counters = this.state.counters.map((counter, idx) => {
+  //     if (counter.id === id) {
+  //       return { id: idx, value: counter.value - 1 };
+  //     }
+  //   });
+  //   this.setState({ counters: counters });
+  // };
 
-  handleDelete = () => {
-    if (this.state.counter > 0) {
-      this.setState({ counter: this.state.counter === 0 });
-    }
-  };
+  // handleDelete = () => {
+  //   if (this.state.counter > 0) {
+  //     this.setState({ counter: this.state.counter === 0 });
+  //   }
+  // };
 
-  handleReset = () => {
-    if (this.state.counter > 0) {
-      this.setState({ counter: this.state.counter === 0 });
-      if (this.state.counter === 0) return "Zero";
-      return this.state.counter;
-    }
-    if (this.state.counter === 0) return "Zero";
-    return this.state.counter;
-  };
+  // handleReset = () => {
+  //   if (this.state.counter > 0) {
+  //     this.setState({ counter: this.state.counter === 0 });
+  //     if (this.state.counter === 0) return "Zero";
+  //     return this.state.counter;
+  //   }
+  //   if (this.state.counter === 0) return "Zero";
+  //   return this.state.counter;
+  // };
 
   render() {
     return (
       <>
-        {/* <button
-          onClick={this.handleReset}
-          type="button"
-          class="btn btn-primary m-4"
-        >
-          Reset
-        </button> */}
-
         <ul>
-          <li class="list-unstyled">
+          <li className="list-unstyled">
             <div>
-              <span class="badge bg-primary">{this.formatCount()}</span>
+              <span className="badge bg-primary m-2">{this.props.value}</span>
               <button
-                onClick={this.handleIncrement}
+                onClick={() => this.props.onIncrement(this.props.id)}
                 type="button"
-                class="btn btn-secondary m-2"
+                className="btn btn-secondary m-2"
               >
                 +
               </button>
               <button
-                onClick={this.handleDecrement}
+                onClick={() => this.props.onDecrement(this.props.id)}
                 type="button"
-                class="btn btn-secondary m-2"
+                className="btn btn-secondary m-2"
               >
                 -
               </button>
-              <button
-                onClick={this.handleDelete}
-                type="button"
-                class="btn btn-danger m-2"
-              >
+              <button type="button" className="btn btn-danger m-2">
                 Delete
               </button>
             </div>
           </li>
-          {/* <li class="list-unstyled">
+          {/* <li className="list-unstyled">
             <div>
-              <span class="badge bg-primary">{this.state.items[0]}</span>
-              <button type="button" class="btn btn-secondary m-2">
+              <span className="badge bg-primary">{this.state.items[0]}</span>
+              <button type="button" className="btn btn-secondary m-2">
                 +
               </button>
-              <button type="button" class="btn btn-secondary m-2">
+              <button type="button" className="btn btn-secondary m-2">
                 -
               </button>
-              <button type="button" class="btn btn-danger m-2">
+              <button type="button" className="btn btn-danger m-2">
                 Delete
               </button>
             </div>
           </li>
-          <li class="list-unstyled">
+          <li className="list-unstyled">
             <div>
-              <span class="badge bg-primary p-2">Zero</span>
-              <button type="button" class="btn btn-secondary m-2">
+              <span className="badge bg-primary p-2">Zero</span>
+              <button type="button" className="btn btn-secondary m-2">
                 +
               </button>
-              <button type="button" class="btn btn-secondary m-2">
+              <button type="button" className="btn btn-secondary m-2">
                 -
               </button>
-              <button type="button" class="btn btn-danger m-2">
+              <button type="button" className="btn btn-danger m-2">
                 Delete
               </button>
             </div>
