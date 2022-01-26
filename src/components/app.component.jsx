@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Counters from "./counters.component";
 import Navbar from "./navbar.component";
 import Reset from "./reset.component";
+import Movies from "./movies.component";
 
 class App extends Component {
   state = {
@@ -49,14 +50,15 @@ class App extends Component {
   render() {
     return (
       <>
-        <Navbar noZeroItems={this.getNonZeroItems()} />
+        {/* <Navbar noZeroItems={this.getNonZeroItems()} />
         <Reset onReset={this.handleReset} />
         <Counters
           counters={this.state.counters}
           onIncrement={this.handleIncrement}
           onDecrement={this.handleDecrement}
           onDelete={this.handleDelete}
-        />
+        /> */}
+        <Movies />
       </>
     );
   }
